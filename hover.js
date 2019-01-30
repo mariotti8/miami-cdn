@@ -137,6 +137,8 @@ var hoverEffect = function(opts) {
             evtOut = "touchend";
         }
         hoverElement.addEventListener(evtIn, function(e) {
+            document.getElementById("bg-img").style.opacity = "1";
+
             TweenMax.to(mat.uniforms.dispFactor, speedIn, {
                 value: 1,
                 ease: easing
@@ -144,6 +146,8 @@ var hoverEffect = function(opts) {
         });
 
         hoverElement.addEventListener(evtOut, function(e) {
+            document.getElementById("bg-img").style.opacity = "0";
+
             TweenMax.to(mat.uniforms.dispFactor, speedOut, {
                 value: 0,
                 ease: easing
