@@ -44,7 +44,7 @@ var hoverEffect = function(opts) {
 
             vec4 finalTexture = mix(vec4(3.0, 3.0, 3.0, 1.0), _texture2, dispFactor);
 
-            gl_FragColor = finalTexture;
+            gl_FragColor =  finalTexture;
             // gl_FragColor = disp;
         }
     `;
@@ -80,11 +80,11 @@ var hoverEffect = function(opts) {
 
     var renderer = new THREE.WebGLRenderer({
         antialias: false,
-        // alpha: true
+        alpha: true
     });
 
     renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setClearColor(0xffffff, 1.0);
+    renderer.setClearColor(0x000000, 0); // the default
     renderer.setSize(parent.offsetWidth, parent.offsetHeight);
     parent.appendChild(renderer.domElement);
 
@@ -118,7 +118,7 @@ var hoverEffect = function(opts) {
         vertexShader: vertex,
         fragmentShader: fragment,
         transparent: true,
-        opacity: 1.0
+        opacity: 0.0
     });
 
     var geometry = new THREE.PlaneBufferGeometry(
@@ -137,8 +137,6 @@ var hoverEffect = function(opts) {
             evtOut = "touchend";
         }
         hoverElement.addEventListener(evtIn, function(e) {
-            document.getElementById("bg-img").classList.add('is-visible');
-
             TweenMax.to(mat.uniforms.dispFactor, speedIn, {
                 value: 1,
                 ease: easing
@@ -146,8 +144,6 @@ var hoverEffect = function(opts) {
         });
 
         hoverElement.addEventListener(evtOut, function(e) {
-            document.getElementById("bg-img").classList.remove('is-visible');
-
             TweenMax.to(mat.uniforms.dispFactor, speedOut, {
                 value: 0,
                 ease: easing
