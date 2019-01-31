@@ -42,7 +42,7 @@ var hoverEffect = function(opts) {
             vec4 _texture = texture2D(texture, distortedPosition);
             vec4 _texture2 = texture2D(texture2, distortedPosition2);
 
-            vec4 finalTexture = mix(_texture, _texture2, dispFactor);
+            vec4 finalTexture = mix(vec4(3.0, 3.0, 3.0, 1.0), _texture2, dispFactor);
 
             gl_FragColor = finalTexture;
             // gl_FragColor = disp;
@@ -84,7 +84,7 @@ var hoverEffect = function(opts) {
     });
 
     renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setClearColor(0xffffff, 0.0);
+    renderer.setClearColor(0xffffff, 1.0);
     renderer.setSize(parent.offsetWidth, parent.offsetHeight);
     parent.appendChild(renderer.domElement);
 
