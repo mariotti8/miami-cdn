@@ -141,7 +141,7 @@ var hoverEffect = function(opts) {
                 value: 1,
                 ease: easing
             });
-        });
+        }, {passive: true});
 
         hoverElement.addEventListener(evtOut, function(e) {
             TweenMax.to(mat.uniforms.dispFactor, speedOut, {
